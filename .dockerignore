@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+.git
+node_modules
+backend/.venv
+backend/venv
+backend/__pycache__
+backend/**/*.pyc
+backend/*.db
+backend/*.db-shm
+backend/*.db-wal
+frontend/dist
+.pytest_cache
+htmlcov

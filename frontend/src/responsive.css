@@ -1,0 +1,461 @@
+/* Responsive refinements for ForgeIQ's operational workbench. */
+:root {
+  color-scheme: light;
+  scroll-padding-top: 12px;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.app-shell,
+.app-main,
+.page-shell,
+.form-panel,
+.records-panel,
+.config-panel,
+.metrics-panel,
+.chart-panel,
+.definitions-panel,
+.dynamic-form-panel,
+.dynamic-history-panel {
+  min-width: 0;
+}
+
+img,
+canvas {
+  max-width: 100%;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
+/* Keep the main workspace comfortable when the fixed rail still fits. */
+@media (max-width: 1280px) {
+  .app-main {
+    padding-inline: clamp(16px, 3vw, 32px);
+  }
+
+  .sidebar {
+    width: 224px;
+    min-width: 224px;
+  }
+
+  .app-main {
+    margin-left: 224px;
+    width: calc(100% - 224px);
+  }
+
+  .data-layout {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+}
+
+@media (max-width: 1100px) {
+  .data-layout,
+  .dynamic-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .records-panel {
+    min-height: 0;
+  }
+
+  .page-heading {
+    flex-wrap: wrap;
+  }
+
+  .page-heading > :first-child {
+    min-width: min(100%, 320px);
+  }
+
+  .run-meta {
+    max-width: 100%;
+  }
+
+  .comparison-table {
+    min-width: 850px;
+  }
+
+  .objective-chart {
+    min-width: 0;
+  }
+}
+
+/* Tablet and phone navigation becomes a horizontally scrollable top rail. */
+@media (max-width: 760px) {
+  .sidebar {
+    position: sticky;
+    inset: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+    max-height: none;
+    padding: 8px 12px 6px;
+  }
+
+  .sidebar nav {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .nav-item {
+    flex: 0 0 auto;
+    min-height: 42px;
+    padding-inline: 10px;
+  }
+
+  .app-shell {
+    display: block;
+  }
+
+  .app-main {
+    width: 100%;
+    margin: 0;
+    padding: 20px clamp(12px, 3.4vw, 24px) 12px;
+  }
+
+  .page-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .page-heading .top-actions {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  .page-heading .top-actions > * {
+    min-width: 0;
+  }
+
+  .page-heading .top-actions .button {
+    flex: 1 1 180px;
+    white-space: normal;
+  }
+
+  .data-tabs,
+  .view-tabs {
+    max-width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .data-tabs > button,
+  .view-tabs > button {
+    flex: 0 0 auto;
+    min-height: 44px;
+  }
+
+  .form-grid,
+  .dynamic-form-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .config-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .constraints-panel {
+    grid-column: auto;
+  }
+
+  .results-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .results-toolbar .view-tabs {
+    width: 100%;
+  }
+
+  .save-control {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .save-control .control {
+    flex: 1 1 150px;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .generate-bar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .generate-bar .button {
+    width: 100%;
+    min-height: 44px;
+    white-space: normal;
+  }
+
+  .gantt-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .gantt-selects {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gantt-selects label,
+  .gantt-selects .control {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .zoom-controls {
+    justify-content: flex-end;
+    min-height: 42px;
+  }
+
+  .zoom-controls input {
+    flex: 1;
+    max-width: 180px;
+  }
+
+  .table-wrap,
+  .dynamic-table-scroll,
+  .gantt-scroll {
+    max-width: 100%;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .dynamic-event-item {
+    align-items: flex-start;
+  }
+
+  .app-footer {
+    flex-wrap: wrap;
+    gap: 8px 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  .app-main {
+    padding-inline: 12px;
+  }
+
+  h1 {
+    font-size: clamp(21px, 6vw, 25px);
+    overflow-wrap: anywhere;
+  }
+
+  .page-subtitle {
+    line-height: 1.55;
+  }
+
+  .stat-cell {
+    padding: 12px 10px;
+  }
+
+  .stat-cell strong {
+    font-size: 21px;
+  }
+
+  .form-panel,
+  .records-panel,
+  .config-panel,
+  .metrics-panel,
+  .chart-panel,
+  .definitions-panel {
+    padding: 14px;
+  }
+
+  .form-grid,
+  .dynamic-form-grid,
+  .definitions-grid,
+  .gantt-selects {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .full-field,
+  .dynamic-full-field,
+  .dynamic-urgent-fields {
+    grid-column: auto;
+  }
+
+  .filter-row {
+    flex-wrap: wrap;
+  }
+
+  .filter-row > * {
+    min-width: 0;
+  }
+
+  .filter-control {
+    flex: 1 1 140px;
+  }
+
+  .form-actions,
+  .dynamic-entry-form .form-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .form-actions .button,
+  .dynamic-entry-form .form-actions .button {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .sample-callout,
+  .section-title-row,
+  .records-heading,
+  .dynamic-subheading {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .sample-callout .button {
+    width: 100%;
+  }
+
+  .recommendation-banner {
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .recommendation-copy h2 {
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+
+  .metric-definition-note,
+  .chart-unit {
+    display: block;
+    line-height: 1.5;
+  }
+
+  .dynamic-results-section {
+    padding: 12px;
+  }
+
+  .dynamic-results-title {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .dynamic-stability {
+    min-width: 0;
+    align-items: flex-start;
+  }
+
+  .dynamic-metric-row {
+    grid-template-columns: minmax(100px, 1fr) minmax(62px, .65fr) minmax(62px, .65fr);
+    gap: 5px;
+    padding: 8px 6px;
+    font-size: 9px;
+    overflow-wrap: anywhere;
+  }
+
+  .dynamic-urgent-fields {
+    padding: 10px;
+  }
+
+  .task-detail dl {
+    grid-template-columns: minmax(75px, 0.35fr) minmax(0, 1fr);
+  }
+
+  .app-footer span:nth-child(2) {
+    flex-basis: 100%;
+    order: 3;
+  }
+
+  .app-footer button {
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 360px) {
+  .sidebar {
+    padding-inline: 8px;
+  }
+
+  .brand {
+    padding-inline: 2px;
+  }
+
+  .nav-item {
+    gap: 5px;
+    padding-inline: 8px;
+    font-size: 9px;
+  }
+
+  .stat-cell > span {
+    letter-spacing: .04em;
+  }
+
+  .dynamic-metric-row {
+    grid-template-columns: minmax(88px, 1fr) minmax(55px, .6fr) minmax(55px, .6fr);
+    gap: 4px;
+    font-size: 8px;
+  }
+
+  .button {
+    white-space: normal;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+}
+
+/* Language control: retained in the sidebar on desktop and below navigation on narrow screens. */
+.language-switch {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: max-content;
+  margin: 0 0 12px;
+  padding: 3px;
+  background: #f3f6fa;
+  border: 1px solid #e7ecf2;
+  border-radius: 7px;
+}
+.language-switch button {
+  padding: 5px 9px;
+  color: #66758a;
+  background: transparent;
+  border: 0;
+  border-radius: 5px;
+  font-size: 10px;
+  font-weight: 600;
+}
+.language-switch button.selected {
+  color: #1e4fa8;
+  background: #fff;
+  box-shadow: 0 1px 3px #14213518;
+}
+.language-switch button:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
